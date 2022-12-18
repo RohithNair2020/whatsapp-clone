@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import ChatWindow from './ChatWindow/ChatWindow';
+import Sidebar from './Sidebar/Sidebar';
 
 interface Props {
     name?: string;
@@ -8,7 +10,14 @@ interface Props {
 const App = (props: Props) => {
     const { name } = props;
     console.log(name);
-    return <div className="App'">Whatsapp Clone</div>;
+    return (
+        <div className="app">
+            <div className="app-container">
+                <Sidebar />
+                <ChatWindow />
+            </div>
+        </div>
+    );
 };
 
 App.defaultProps = {

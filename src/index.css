@@ -1,11 +1,15 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+    --background-color: #222e35;
+    --background-color-secondary: #111b21;
+    --header-padding: 10px 16px;
+    --primary: #d1d7db;
+    --search-input-color: #202c33;
+}
+
+* {
+    color: #ddd;
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
 }

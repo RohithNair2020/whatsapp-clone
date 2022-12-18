@@ -1,0 +1,12 @@
+.chat-window-container {
+    display: flex;
+    flex-direction: column;
+    flex: 0.65;
+    background-image: url(chatBackground.png);
+    background-size: contain;
+}
+
+.chat-window-header {
+    background-color: var(--background-color);
+    padding: var(--header-padding);
+}

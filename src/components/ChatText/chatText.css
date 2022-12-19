@@ -1,0 +1,29 @@
+.chat-text-container {
+    padding: 6px 7px 8px 9px;
+    border-radius: 8px;
+    width: fit-content;
+    max-width: 90%;
+    min-width: 50px;
+    display: flex;
+    gap: 7px;
+    /* align-self: flex-end; */
+}
+
+.chat-text-normal {
+    background-color: var(--background-color);
+    align-self: flex-start;
+}
+
+.chat-text-user {
+    background-color: var(--chat-text-user-color);
+    align-self: end;
+}
+
+.chat-text-time-stamp {
+    margin-top: 5px;
+    margin-bottom: -5px;
+    color: var(--text-secondary);
+    font-size: x-small;
+    align-self: flex-end;
+    white-space: nowrap;
+}

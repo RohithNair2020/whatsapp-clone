@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import ChatWindow from './ChatWindow/ChatWindow';
-import Sidebar from './Sidebar/Sidebar';
+import ChatWindow from './containers/ChatWindow/ChatWindow';
+import Sidebar from './containers/Sidebar/Sidebar';
 
 interface Props {
     name?: string;

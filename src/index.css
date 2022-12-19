@@ -1,9 +1,13 @@
 :root {
     --background-color: #222e35;
+    --background-color-on-hover: rgba(134, 150, 160, 0.15);
     --background-color-secondary: #111b21;
+    --chat-text-user-color: #016e57;
+    --text-secondary: rgba(221, 221, 221, 0.632);
     --header-padding: 10px 16px;
     --primary: #d1d7db;
     --search-input-color: #202c33;
+    --search-input-color-secondary: #394349;
 }
 
 * {
@@ -12,4 +16,28 @@
     font-size: 16px;
     margin: 0;
     padding: 0;
+}
+
+.avatar {
+    cursor: pointer;
+}
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--background-color);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--background-color);
+    border-radius: 20px;
 }

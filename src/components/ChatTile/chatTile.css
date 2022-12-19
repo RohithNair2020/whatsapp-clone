@@ -1,0 +1,33 @@
+.chat-tile-container {
+    display: flex;
+    padding: 0 15px;
+    height: 72px;
+    box-sizing: border-box;
+    align-items: center;
+    cursor: pointer;
+}
+
+.chat-tile-info-container {
+    border-top: 1px solid rgba(134, 150, 160, 0.15);
+    box-sizing: border-box;
+    flex: 1;
+    height: 100%;
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.chat-tile-container:hover {
+    background-color: var(--background-color-on-hover);
+}
+
+.chat-tile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.chat-tile-info-last-message {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}

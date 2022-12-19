@@ -4,8 +4,9 @@ import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import ChatIcon from '@mui/icons-material/Chat';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import './sidebar.css';
 import { Avatar, IconButton } from '@mui/material';
+import './sidebar.css';
+import ChatTile from '../../components/ChatTile/ChatTile';
 
 interface SidebarProps {}
 
@@ -15,7 +16,7 @@ const Sidebar = (props: SidebarProps) => {
         <div className="sidebar-container">
             <div className="sidebar-header">
                 <div className="sidebar-header-profile-pic">
-                    <Avatar />
+                    <Avatar className="avatar" />
                 </div>
                 <div className="sidebar-header-options">
                     <IconButton>
@@ -31,10 +32,20 @@ const Sidebar = (props: SidebarProps) => {
             </div>
             <div className="search-bar">
                 <div className="search-input-container">
-                    <SearchIcon fontSize="small" />
+                    <SearchIcon
+                        className="search-input-icon"
+                        fontSize="small"
+                    />
                     <input type="text" className="search-input" />
                 </div>
-                <FilterListIcon />
+                <FilterListIcon fontSize="small" />
+            </div>
+            <div className="chat-list-container">
+                <ChatTile />
+                <ChatTile />
+                <ChatTile />
+                <ChatTile />
+                <ChatTile />
             </div>
         </div>
     );

@@ -4,6 +4,7 @@
     --background-color-secondary: #111b21;
     --chat-text-user-color: #016e57;
     --text-primary: #ddd;
+    --login-card-color: #ddd;
     --text-secondary: rgba(221, 221, 221, 0.632);
     --header-padding: 10px 16px;
     --primary: #d1d7db;
@@ -44,4 +45,9 @@
 
 button {
     cursor: pointer;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
 }

@@ -24,7 +24,7 @@ const App = () => {
                         </PrivateRoute>
                     }
                 />
-                <Route path="*" element={<h1>Page not found 404</h1>} />
+                <Route path="*" element={<LoginContainer />} />
             </Routes>
         </div>
     );

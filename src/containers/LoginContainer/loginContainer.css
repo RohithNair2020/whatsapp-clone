@@ -1,6 +1,6 @@
 .login-container {
-    color: var(--text-primary);
-    background-color: var(--background-color);
+    color: var(--search-input-color-secondary);
+    background-color: var(--login-card-color);
     display: flex;
     height: fit-content;
     flex-direction: column;
@@ -38,15 +38,19 @@
 .login-input {
     box-sizing: border-box;
     height: 35px;
-    max-width: 70%;
-    color: var(--text-primary);
+    max-width: 60%;
+    color: var(--chat-text-user-color);
     background-color: var(--background-color-on-hover);
     display: flex;
-    gap: 30px;
     align-items: center;
     border-radius: 8px;
     padding: 0 32px 0 15px;
     flex: 1;
     outline: none;
     border: none;
+}
+
+.register-link {
+    color: var(--chat-text-user-color);
+    font-size: 0.9rem;
 }

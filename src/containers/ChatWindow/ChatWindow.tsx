@@ -19,11 +19,14 @@ const ChatWindow = (props: ChatWindowProps) => {
         setTextInputValue(e.target.value);
     };
 
+    // const chatWindow = document.getElementById('chatWindow');
+
     const sendMessage = () => {
         if (textInputValue) {
             setMyMessages((prev) => [...prev, textInputValue]);
         }
         setTextInputValue('');
+        // chatWindow!.scrollTop = chatWindow!.scrollHeight;
     };
 
     console.log(userMessages);
@@ -37,7 +40,7 @@ const ChatWindow = (props: ChatWindowProps) => {
                     <h2>Sarah</h2>
                 </div>
             </div>
-            <div className="chat-window-body">
+            <div id="chatWindow" className="chat-window-body">
                 <ChatText user message="hi..how are you?" />
                 <ChatText message="hey....I'm fine" />
                 <ChatText user message="hi..how are you?" />

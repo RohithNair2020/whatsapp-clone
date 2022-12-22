@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './loginContainer.css';
 
 const LoginContainer = () => {
@@ -34,7 +35,6 @@ const LoginContainer = () => {
                         <label htmlFor="login-pass">Password</label>
                         <input
                             onChange={handlePasswordChange}
-                            name="login-password-input"
                             type="password"
                             value={password}
                             className="login-input"
@@ -46,7 +46,9 @@ const LoginContainer = () => {
                     >
                         Login
                     </button>
-                    <small>signup</small>
+                    <Link to="/register" className="link">
+                        <i className="register-link">Create an account</i>
+                    </Link>
                 </div>
             </div>
         </div>

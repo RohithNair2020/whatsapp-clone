@@ -31,56 +31,43 @@ const ChatWindow = (props: ChatWindowProps) => {
         <div className="chat-window-container">
             <div className="chat-window-header">
                 <div className="chat-window-profile-pic">
-                    <Avatar />
+                    <Avatar src="/propic2.jfif" />
                 </div>
                 <div className="chat-window-header-info">
-                    <h2>Rohith</h2>
+                    <h2>Sarah</h2>
                 </div>
             </div>
             <div className="chat-window-body">
-                <ChatText message="shukham aano?" />
-                <ChatText message="shukham aano?" />
-                <ChatText message="shukham aano?" />
-                <ChatText message="shukham aano?" />
-                <ChatText message="shukham aano?" />
-                <ChatText message="shukham aano?" />
-                <ChatText user message="entha mole? jaada aano?" />
-                <ChatText
-                    user
-                    message="entha mole? jaada aano? entha mole? jaada aano? entha mole? jaada aano? entha mole? jaada aano? entha mole? jaada aano? entha mole? jaada aano? entha mole? jaada aano? "
-                />
-                <ChatText user message="entha mole? jaada aano?" />
-                <ChatText user message="entha mole? jaada aano?" />
-                <ChatText user message="entha mole? jaada aano?" />
-                <ChatText message="shukham aano?" />
-                <ChatText user message="entha mole? jaada aano?" />
-                <ChatText message="shukham aano?" />
-                <ChatText user message="entha mole? jaada aano?" />
-                <ChatText message="shukham aano?" />
-                <ChatText user message="entha mole? jaada aano?" />
-                <ChatText message="shukham aano?" />
-                <ChatText user message="entha mole? jaada aano?" />
-                <ChatText message="shukham aano?" />
-                <ChatText user message="entha mole? jaada aano?" />
-                <ChatText message="shukham aano?" />
-                <ChatText user message="entha mole? jaada aano?" />
-                <ChatText message="shukham aano?" />
-                <ChatText user message="entha mole? jaada aano?" />
-                <ChatText message="shukham aano?" />
-                <ChatText user message="entha mole? jaada aano?" />
-                <ChatText message="shukham aano?" />
-                <ChatText user message="entha mole? jaada aano?" />
-                <ChatText message="a" />
+                <ChatText user message="hi..how are you?" />
+                <ChatText message="hey....I'm fine" />
+                <ChatText user message="hi..how are you?" />
+                <ChatText message="hey....I'm fine" />
+                <ChatText user message="hi..how are you?" />
+                <ChatText message="hey....I'm fine" />
+                <ChatText user message="hi..how are you?" />
+                <ChatText message="hey....I'm fine" />
+                <ChatText user message="hi..how are you?" />
+                <ChatText message="hey....I'm fine" />
+                <ChatText user message="hi..how are you?" />
+                <ChatText message="hey....I'm fine" />
+                <ChatText user message="hi..how are you?" />
+                <ChatText message="hey....I'm fine" />
+                <ChatText user message="hi..how are you?" />
+                <ChatText message="hey....I'm fine" />
+                <ChatText user message="hi..how are you?" />
+                <ChatText message="hey....I'm fine" />
+                <ChatText user message="hi..how are you?" />
+                <ChatText message="hey....I'm fine" />
                 {myMessages.map((message) => (
                     <ChatText key={message} user message={message} />
                 ))}
             </div>
             <div className="chat-window-text-field">
                 <IconButton>
-                    <InsertEmoticonIcon />
+                    <InsertEmoticonIcon className="icon" />
                 </IconButton>
                 <IconButton>
-                    <AttachFileIcon />
+                    <AttachFileIcon className="icon" />
                 </IconButton>
                 <div className="text-field-input-container">
                     {/* <textarea
@@ -97,7 +84,9 @@ const ChatWindow = (props: ChatWindowProps) => {
                     />
                 </div>
                 <IconButton onClick={sendMessage}>
-                    <SendIcon />
+                    <SendIcon
+                        className={textInputValue ? 'icon-green' : 'icon'}
+                    />
                 </IconButton>
             </div>
         </div>

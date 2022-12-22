@@ -1,21 +1,31 @@
-import React from 'react';
+/* eslint-disable react/jsx-wrap-multilines */
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import ChatWindow from './containers/ChatWindow/ChatWindow';
-import Sidebar from './containers/Sidebar/Sidebar';
+import AppContainer from './containers/AppContainer';
+import LoginContainer from './containers/LoginContainer/LoginContainer';
+import RegistrationContainer from './containers/RegistrationContainer/RegistrationContainer';
+import PrivateRoute from './Router/PrivateRoute';
 
-interface Props {
-    name?: string;
-}
+const App = () => {
+    const [auth, setAuth] = useState(true);
+    console.log(setAuth);
 
-const App = (props: Props) => {
-    const { name } = props;
-    console.log(name);
     return (
         <div className="app">
-            <div className="app-container">
-                <Sidebar />
-                <ChatWindow />
-            </div>
+            <Routes>
+                <Route path="/login" element={<LoginContainer />} />
+                <Route path="/register" element={<RegistrationContainer />} />
+                <Route
+                    path="/dashboard"
+                    element={
+                        <PrivateRoute user={{ token: auth }}>
+                            <AppContainer />
+                        </PrivateRoute>
+                    }
+                />
+                <Route path="*" element={<h1>Page not found 404</h1>} />
+            </Routes>
         </div>
     );
 };

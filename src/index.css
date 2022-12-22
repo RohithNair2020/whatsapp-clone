@@ -3,6 +3,7 @@
     --background-color-on-hover: rgba(134, 150, 160, 0.15);
     --background-color-secondary: #111b21;
     --chat-text-user-color: #016e57;
+    --text-primary: #ddd;
     --text-secondary: rgba(221, 221, 221, 0.632);
     --header-padding: 10px 16px;
     --primary: #d1d7db;
@@ -11,7 +12,6 @@
 }
 
 * {
-    color: #ddd;
     font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
     font-size: 16px;
     margin: 0;
@@ -40,4 +40,8 @@
 *::-webkit-scrollbar-thumb {
     background-color: var(--background-color);
     border-radius: 20px;
+}
+
+button {
+    cursor: pointer;
 }

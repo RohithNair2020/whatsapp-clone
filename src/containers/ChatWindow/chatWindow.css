@@ -48,12 +48,19 @@
 }
 
 .chat-text-field {
+    color: var(--color-secondary);
     resize: none;
     width: 100%;
     outline: none;
     border: none;
-    /* background-color: yellow; */
-    /* color: black; */
     overflow: hidden;
     background-color: var(--search-input-color-secondary);
+}
+
+.icon {
+    color: var(--text-secondary);
+}
+
+.icon-green {
+    color: var(--chat-text-user-color);
 }

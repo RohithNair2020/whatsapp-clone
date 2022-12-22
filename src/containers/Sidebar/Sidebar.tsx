@@ -16,7 +16,7 @@ const Sidebar = (props: SidebarProps) => {
         <div className="sidebar-container">
             <div className="sidebar-header">
                 <div className="sidebar-header-profile-pic">
-                    <Avatar className="avatar" />
+                    <Avatar className="avatar" src="/propic1.jfif" />
                 </div>
                 <div className="sidebar-header-options">
                     <IconButton>
@@ -38,7 +38,7 @@ const Sidebar = (props: SidebarProps) => {
                     />
                     <input type="text" className="search-input" />
                 </div>
-                <FilterListIcon fontSize="small" />
+                <FilterListIcon className="filter-list-icon" fontSize="small" />
             </div>
             <div className="chat-list-container">
                 <ChatTile />

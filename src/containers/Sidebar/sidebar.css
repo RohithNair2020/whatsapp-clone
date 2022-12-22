@@ -7,7 +7,6 @@
 }
 
 .sidebar-header {
-    color: var(--primary);
     padding: var(--header-padding);
     display: flex;
     justify-content: space-between;
@@ -20,6 +19,7 @@
 }
 
 .sidebar-icon {
+    color: var(--text-secondary);
     margin-right: 30px;
 }
 
@@ -40,7 +40,9 @@
     align-items: center;
 }
 
-.search-input-icon {
+.search-input-icon,
+.filter-list-icon {
+    color: var(--text-secondary);
     cursor: pointer;
 }
 
@@ -57,6 +59,7 @@
 }
 
 .search-input {
+    color: var(--text-primary);
     outline: none;
     border: none;
     background-color: var(--search-input-color);

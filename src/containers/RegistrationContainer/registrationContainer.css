@@ -1,0 +1,40 @@
+.registration-container {
+    color: var(--text-primary);
+    background-color: var(--background-color);
+    display: flex;
+    height: fit-content;
+    flex-direction: column;
+    width: fit-content;
+    padding: 50px;
+    border-radius: 8px;
+}
+
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.registration-button {
+    color: var(--text-primary);
+    background-color: var(--chat-text-user-color);
+    border: none;
+    padding: 10px 30px;
+    box-sizing: border-box;
+    height: 40px;
+    border-radius: 8px;
+    max-width: 200px;
+    align-self: flex-end;
+}
+
+.registration-input {
+    /* box-sizing: border-box; */
+    height: 35px;
+    color: var(--text-primary);
+    background-color: var(--background-color-on-hover);
+    border-radius: 8px;
+    flex: 1;
+    outline: none;
+    border: none;
+}

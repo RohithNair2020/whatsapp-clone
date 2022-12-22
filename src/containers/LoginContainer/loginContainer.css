@@ -1,0 +1,52 @@
+.login-container {
+    color: var(--text-primary);
+    background-color: var(--background-color);
+    display: flex;
+    height: fit-content;
+    flex-direction: column;
+    width: fit-content;
+    padding: 50px;
+    border-radius: 8px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.login-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.login-button {
+    color: var(--text-primary);
+    background-color: var(--chat-text-user-color);
+    border: none;
+    padding: 10px 30px;
+    box-sizing: border-box;
+    height: 40px;
+    border-radius: 8px;
+    max-width: 200px;
+    align-self: flex-end;
+}
+
+.login-input {
+    box-sizing: border-box;
+    height: 35px;
+    max-width: 70%;
+    color: var(--text-primary);
+    background-color: var(--background-color-on-hover);
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    border-radius: 8px;
+    padding: 0 32px 0 15px;
+    flex: 1;
+    outline: none;
+    border: none;
+}

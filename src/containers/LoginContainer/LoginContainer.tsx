@@ -1,11 +1,13 @@
+import axios from 'axios';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './loginContainer.css';
 
 const LoginContainer = () => {
     console.log('props');
     const [phone, setPhone] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const navigate = useNavigate();
 
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.log('login event', e.target.value);
@@ -15,6 +17,16 @@ const LoginContainer = () => {
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.log('login event', e);
         setPassword(e.target.value);
+    };
+
+    const login = async () => {
+        const response = await axios.post('/api/login', { phone, password });
+        console.log('login response', response);
+        if (response.data.phone) {
+            navigate('/dashboard');
+        } else {
+            alert('password incorrect');
+        }
     };
 
     return (
@@ -43,6 +55,7 @@ const LoginContainer = () => {
                     <button
                         type="submit"
                         className="login-button"
+                        onClick={login}
                     >
                         Login
                     </button>

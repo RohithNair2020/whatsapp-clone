@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './registrationContainer.css';
+import API from '../../Router/api';
 
 const RegistrationContainer = () => {
     const [isOtpForm, setIsOtpForm] = useState<Boolean>(false);
@@ -24,7 +25,7 @@ const RegistrationContainer = () => {
     };
 
     const registerUser = async () => {
-        const response = await axios.post('/api/register', { phone, password });
+        const response = await axios.post(API.REGISTER, { phone, password });
         console.log('axios response', response);
     };
 

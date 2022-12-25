@@ -2,8 +2,12 @@ import Avatar from '@mui/material/Avatar';
 import React from 'react';
 import './chatTile.css';
 
-const ChatTile = () => {
-    console.log('chatTile');
+interface ChatTileProps {
+    name: string;
+}
+
+const ChatTile = (props: ChatTileProps) => {
+    const { name } = props;
     return (
         <div className="chat-tile-container">
             <div className="chat-tile-dp">
@@ -11,7 +15,7 @@ const ChatTile = () => {
             </div>
             <div className="chat-tile-info-container">
                 <div className="chat-tile-infor">
-                    <h2 className="chat-tile-info-name">John</h2>
+                    <h2 className="chat-tile-info-name">{name}</h2>
                     <small className="chat-tile-info-last-message">
                         This message was deleted
                     </small>

@@ -3,4 +3,5 @@
 /build
 *.css
 vite.config.ts
+firebase.js
 

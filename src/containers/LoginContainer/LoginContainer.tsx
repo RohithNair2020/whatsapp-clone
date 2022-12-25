@@ -1,12 +1,15 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import API from '../../Router/api';
+import useStore, { Store } from '../../Store';
 import './loginContainer.css';
 
 const LoginContainer = () => {
     console.log('props');
     const [phone, setPhone] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const setUser = useStore((state: Store) => state.setUser);
     const navigate = useNavigate();
 
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,9 +23,15 @@ const LoginContainer = () => {
     };
 
     const login = async () => {
-        const response = await axios.post('/api/login', { phone, password });
+        const response = await axios.post(API.LOGIN, { phone, password });
         console.log('login response', response);
-        if (response.data.phone) {
+        if (response.data) {
+            localStorage.setItem('auth', JSON.stringify(response.data));
+            const currentUser = {
+                userId: response.data?.userId,
+                phone: response.data?.phone,
+            };
+            setUser(currentUser);
             navigate('/dashboard');
         } else {
             alert('password incorrect');

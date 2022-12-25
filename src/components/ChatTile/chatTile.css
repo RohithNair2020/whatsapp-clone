@@ -4,6 +4,7 @@
     height: 72px;
     box-sizing: border-box;
     align-items: center;
+    color: var(--text-primary);
     cursor: pointer;
 }
 

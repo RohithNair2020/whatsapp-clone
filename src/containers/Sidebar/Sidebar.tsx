@@ -10,18 +10,28 @@ import './sidebar.css';
 import ChatTile from '../../components/ChatTile/ChatTile';
 import { User } from '../../Types';
 import useFetchUsers from './useFetchUsers';
-import { isArrayValidAndNotEmpty, isObjectValidAndNotEmpty } from '../../CommonUtil';
+import { isArrayValidAndNotEmpty, isObjectValidAndNotEmpty, isValidFunction } from '../../CommonUtil';
 
 interface SidebarProps {
-    user: User | null;
+    user: User;
+    onReceiverChange: (user: User) => void,
 }
 
 const Sidebar = (props: SidebarProps) => {
-    const { user } = props;
-    const [userList, setUserList] = useState<[User] | []>([]);
+    const { user, onReceiverChange } = props;
+    const [userList, setUserList] = useState<User[]>([]);
 
     const { data, status, isLoading } = useFetchUsers();
     console.log('useFetch', data, status);
+
+    const handleChange = (event: React.SyntheticEvent<Element, Event>, value: User | null) => {
+        console.log('chng', value);
+        if (isValidFunction(onReceiverChange)) {
+            if (isObjectValidAndNotEmpty(value)) {
+                onReceiverChange(value!);
+            }
+        }
+    };
 
     useEffect(() => {
         if (isObjectValidAndNotEmpty(data)) {
@@ -61,16 +71,20 @@ const Sidebar = (props: SidebarProps) => {
                             width: '100%',
                         }}
                         loading={isLoading}
-                        autoComplete
+                        onChange={handleChange}
                         options={userList}
-                        getOptionLabel={(option) => option.phone}
-                        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                        getOptionLabel={(option: User) => option.phone}
+                        // eslint-disable-next-line react/no-unstable-nested-components
+                        PaperComponent={({ children }) => <div className="dropdown-container">{children}</div>}
                         renderOption={
-                            // eslint-disable-next-line max-len, @typescript-eslint/no-unused-vars
-                            (optionProps: React.HTMLAttributes<HTMLLIElement>, option) => <ChatTile name={option.phone || ''} />
+                            (optionProps, option) => (
+                                <li {...optionProps} className="list-item">
+                                    <ChatTile key={option.phone} {...optionProps} name={option.phone || ''} />
+                                </li>
+                            )
                         }
                         // eslint-disable-next-line max-len
-                        filterOptions={(options) => options.filter((option) => option.phone !== user?.phone)}
+                        filterOptions={(options: User[]) => options.filter((option) => option.phone !== user?.phone)}
                         renderInput={(params: AutocompleteRenderInputParams) => (
                             <div ref={params.InputProps.ref}>
                                 <input

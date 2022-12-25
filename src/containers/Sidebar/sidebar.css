@@ -64,3 +64,16 @@
     border: none;
     background-color: var(--search-input-color);
 }
+
+.dropdown-container {
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background-color: var(--background-color);
+    justify-content: space-between;
+}
+
+.list-item {
+    background-color: var(--background-color-secondary);
+}

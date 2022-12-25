@@ -5,13 +5,15 @@ import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import ChatText from '../../components/ChatText/ChatText';
 import './chatWindow.css';
+import { User } from '../../Types';
 
 interface ChatWindowProps {
     userMessages?: string[];
+    receiver: User | null;
 }
 
 const ChatWindow = (props: ChatWindowProps) => {
-    const { userMessages } = props;
+    const { userMessages, receiver } = props;
     const [myMessages, setMyMessages] = useState<string[]>([]);
     const [textInputValue, setTextInputValue] = useState<string>('');
 
@@ -37,7 +39,7 @@ const ChatWindow = (props: ChatWindowProps) => {
                     <Avatar src="/propic2.jfif" />
                 </div>
                 <div className="chat-window-header-info">
-                    <h2>Sarah</h2>
+                    <h2>{receiver?.phone || ''}</h2>
                 </div>
             </div>
             <div id="chatWindow" className="chat-window-body">

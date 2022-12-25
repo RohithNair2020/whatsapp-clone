@@ -4,3 +4,8 @@ export interface User {
     phone: string;
     // contacts: [Object];
 }
+
+export interface ErrorType {
+    message: string
+    exception: string
+}

@@ -104,7 +104,9 @@ const Sidebar = (props: SidebarProps) => {
                         )}
                     />
                 </div>
-                <FilterListIcon className="filter-list-icon" fontSize="small" />
+                <IconButton>
+                    <FilterListIcon className="filter-list-icon" fontSize="small" />
+                </IconButton>
             </div>
             <div className="chat-list-container">
                 <ChatTile name={user?.phone || ''} />

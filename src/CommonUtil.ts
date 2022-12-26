@@ -1,4 +1,5 @@
-// import { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
+import { ErrorType } from './Types';
 // import getProperty from 'lodash';
 
 export const isValidFunction = (aFunction?: unknown) => (
@@ -15,8 +16,8 @@ export const isObjectValidAndNotEmpty = (anObject: unknown): boolean => (
 // eslint-disable-next-line max-len
 // export const getStringFromObject = (string: string, obj: object, defaultValue: unknown = '') => getProperty(obj, string, defaultValue);
 
-export const isEnterKeyPressed = (e: React.KeyboardEvent<HTMLDivElement>) => (
-    (e.keyCode === 13 || e.which === 13) && e.shiftKey === false
+export const isEnterKeyPressed = (e: React.KeyboardEvent) => (
+    (e.code === 'Enter' && e.key === 'Enter') && e.shiftKey === false
 );
 
 export const isStringNullOrUndefined = (stringToCheck: unknown) => {
@@ -41,16 +42,16 @@ const isJsonString = (str: string) => {
     return true;
 };
 
-// export const getErrorMessage = (error: AxiosError<ErrorType>) => {
-//     const { response } = error;
-//     let errorMessage = 'Api Call Failed';
-//     if (isObjectValidAndNotEmpty(response)) {
-//         errorMessage = response?.data?.exception || response?.data?.message || errorMessage;
-//         if (response?.status === 401) {
-//             errorMessage = 'Session Timed Out. Please Login Again';
-//         }
-//     }
-//     return errorMessage;
-// };
+export const getErrorMessage = (error: AxiosError<ErrorType>) => {
+    const { response } = error;
+    let errorMessage = 'Api Call Failed';
+    if (isObjectValidAndNotEmpty(response)) {
+        errorMessage = response?.data?.exception || response?.data?.message || errorMessage;
+        if (response?.status === 401) {
+            errorMessage = 'Session Timed Out. Please Login Again';
+        }
+    }
+    return errorMessage;
+};
 
 export default isJsonString;

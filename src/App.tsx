@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-wrap-multilines */
-import React, { useState } from 'react';
+import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Routes, Route } from 'react-router-dom';
 import useStore, { Store } from './Store';
 import './App.css';
-import AppContainer from './containers/AppContainer';
+import AppContainer from './containers/AppContainer/AppContainer';
 import LoginContainer from './containers/LoginContainer/LoginContainer';
 import RegistrationContainer from './containers/RegistrationContainer/RegistrationContainer';
 import PrivateRoute from './Router/PrivateRoute';
@@ -12,10 +12,10 @@ import PrivateRoute from './Router/PrivateRoute';
 const queryClient = new QueryClient();
 
 const App = () => {
-    const [auth, setAuth] = useState(true);
+    // const [auth, setAuth] = useState(true);
     const user = useStore((state: Store) => state.user);
 
-    console.log(setAuth);
+    console.log('setAuth', user);
 
     return (
         <QueryClientProvider client={queryClient}>
@@ -26,7 +26,7 @@ const App = () => {
                     <Route
                         path="/dashboard"
                         element={
-                            <PrivateRoute user={{ token: auth }}>
+                            <PrivateRoute user={{ token: user.phone.length !== 0 }}>
                                 <AppContainer user={user} />
                             </PrivateRoute>
                         }

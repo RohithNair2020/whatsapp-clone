@@ -7,8 +7,8 @@ import API from '../../Router/api';
 const useFetchUsers =
     () => (
         useQuery(
-            'billingHistoryData',
-            () => axios.get(API.USERS.GET_ALL_USERS),
+            'usersData',
+            () => axios.get(API.USERS.GET_ALL_USERS, { headers: { 'x-access-token': localStorage.getItem('auth') } }),
         )
     );
 

@@ -26,7 +26,7 @@ const LoginContainer = () => {
         const response = await axios.post(API.LOGIN, { phone, password });
         console.log('login response', response);
         if (response.data) {
-            localStorage.setItem('auth', JSON.stringify(response.data));
+            localStorage.setItem('auth', response.data.token);
             const currentUser = {
                 userId: response.data?.userId,
                 phone: response.data?.phone,

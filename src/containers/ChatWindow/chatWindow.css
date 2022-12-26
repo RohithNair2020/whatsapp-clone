@@ -23,11 +23,11 @@
     overflow-x: hidden;
     flex: 1;
     padding: 5px 70px;
-    background: url(chatBackground.png) center center fixed;
     background-size: contain;
 }
 
 .chat-window-text-field {
+    background-color: var(--background-color);
     padding: var(--header-padding);
     box-sizing: border-box;
     min-height: 62px;

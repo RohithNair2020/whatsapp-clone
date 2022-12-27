@@ -93,7 +93,7 @@ const ChatWindow = (props: ChatWindowProps) => {
                     <Avatar src="/propic2.jfif" />
                 </div>
                 <div className="chat-window-header-info">
-                    <h2>{receiver?.phone || ''}</h2>
+                    <h2>{receiver?.name || receiver?.phone || ''}</h2>
                 </div>
             </div>
             <div id="chatWindow" className="chat-window-body">

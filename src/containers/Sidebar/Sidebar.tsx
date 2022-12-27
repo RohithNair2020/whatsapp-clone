@@ -73,7 +73,7 @@ const Sidebar = (props: SidebarProps) => {
                         loading={isLoading}
                         onChange={handleChange}
                         options={userList}
-                        getOptionLabel={(option: User) => option.phone}
+                        getOptionLabel={(option: User) => option.name}
                         // eslint-disable-next-line react/no-unstable-nested-components
                         PaperComponent={({ children }) => <div className="dropdown-container">{children}</div>}
                         renderOption={

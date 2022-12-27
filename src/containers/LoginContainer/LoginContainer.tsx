@@ -33,6 +33,7 @@ const LoginContainer = () => {
             localStorage.setItem('auth', response.data.token);
             const currentUser = {
                 _id: response.data.userId,
+                name: response.data.name,
                 userId: response.data?.userId,
                 phone: response.data?.phone,
             };
@@ -69,8 +70,8 @@ const LoginContainer = () => {
                                     />
                                 </div>
                                 <button className="registration-button" type="submit">Login</button>
-                                <Link to="/login" className="link">
-                                    <i className="register-link">Already have an account</i>
+                                <Link to="/register" className="link">
+                                    <i className="register-link">Signup</i>
                                 </Link>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 export interface User {
     _id: string;
-    // name: String;
     userId: string;
+    name: string;
     phone: string;
     // contacts: [Object];
 }

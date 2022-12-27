@@ -47,7 +47,7 @@ const Sidebar = (props: SidebarProps) => {
                 <div className="sidebar-header-profile-pic">
                     <Avatar className="avatar" src="/propic1.jfif" />
                 </div>
-                <h3>{user?.phone || ''}</h3>
+                <h3>{user?.name || user?.phone || ''}</h3>
                 <div className="sidebar-header-options">
                     <IconButton>
                         <DonutLargeIcon className="sidebar-icon status-icon" />
@@ -79,7 +79,7 @@ const Sidebar = (props: SidebarProps) => {
                         renderOption={
                             (optionProps, option) => (
                                 <li {...optionProps} className="list-item">
-                                    <ChatTile key={option.phone} {...optionProps} name={option.phone || ''} />
+                                    <ChatTile key={option.name} {...optionProps} name={option.name || option.phone || ''} />
                                 </li>
                             )
                         }
@@ -109,7 +109,7 @@ const Sidebar = (props: SidebarProps) => {
                 </IconButton>
             </div>
             <div className="chat-list-container">
-                <ChatTile name={user?.phone || ''} />
+                <ChatTile name={user?.name || user?.phone || ''} />
             </div>
         </div>
     );

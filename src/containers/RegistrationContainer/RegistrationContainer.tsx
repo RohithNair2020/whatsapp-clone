@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
     Formik, Field, Form,
 } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './registrationContainer.css';
 import API from '../../Router/api';
@@ -23,6 +23,7 @@ const initialValues = {
 
 const RegistrationContainer = () => {
     const [isOtpForm, setIsOtpForm] = useState<Boolean>(false);
+    const navigate = useNavigate();
     console.log(isOtpForm, setIsOtpForm);
 
     const registerUser = async (user: Values) => {
@@ -32,6 +33,9 @@ const RegistrationContainer = () => {
             password: user.password,
         });
         console.log('axios response', response);
+        if (response.status === 201) {
+            navigate('/login');
+        }
     };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

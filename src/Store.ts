@@ -8,6 +8,8 @@ export interface Store {
 
 const useStore = create<Store>((set) => ({
     user: {
+        _id: '',
+        name: '',
         phone: '',
         userId: '',
     },

@@ -12,7 +12,6 @@ import PrivateRoute from './Router/PrivateRoute';
 const queryClient = new QueryClient();
 
 const App = () => {
-    // const [auth, setAuth] = useState(true);
     const user = useStore((state: Store) => state.user);
 
     console.log('setAuth', user);

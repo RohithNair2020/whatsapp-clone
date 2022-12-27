@@ -28,6 +28,7 @@ const LoginContainer = () => {
         if (response.data) {
             localStorage.setItem('auth', response.data.token);
             const currentUser = {
+                _id: response.data.userId,
                 userId: response.data?.userId,
                 phone: response.data?.phone,
             };

@@ -1,6 +1,12 @@
 import { Avatar, IconButton } from '@mui/material';
 import axios from 'axios';
-import React, { useState } from 'react';
+import * as io from 'socket.io-client';
+import React, {
+    useState,
+    useEffect,
+    useRef,
+    LegacyRef,
+} from 'react';
 import SendIcon from '@mui/icons-material/Send';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
@@ -11,6 +17,13 @@ import useFetchMessages from './useFetchMessages';
 import API from '../../Router/api';
 import { isArrayValidAndNotEmpty, isEnterKeyPressed } from '../../CommonUtil';
 
+// const socket = io.connect('http://localhost:8090', { transports: ['websocket', 'polling'] });
+const socket = io.connect('http://localhost:8090');
+
+socket.on('connect_error', (err) => {
+    console.log('socket state', err);
+});
+
 interface ChatWindowProps {
     userMessages?: string[];
     user: User;
@@ -20,6 +33,13 @@ interface ChatWindowProps {
 const ChatWindow = (props: ChatWindowProps) => {
     const { userMessages, user, receiver } = props;
     const [textInputValue, setTextInputValue] = useState<string>('');
+    const scrollRef = useRef<HTMLDivElement>();
+
+    const sendSocketMessage = (data: Object) => {
+        socket.emit('message_sent', data);
+    };
+
+    console.log(sendSocketMessage);
 
     const handleTextInputChange =
         (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,10 +61,10 @@ const ChatWindow = (props: ChatWindowProps) => {
                 receiver: receiver!._id,
             };
             const response = await axios.post(API.NEW_MESSAGE, messagePayload);
+            socket.emit('message_sent');
             setTextInputValue('');
             console.log('message send response', response);
-            refetch();
-            // chatWindow!.scrollTo(0, chatWindow!.scrollHeight);
+            // refetch();
         }
     };
 
@@ -54,6 +74,16 @@ const ChatWindow = (props: ChatWindowProps) => {
                 sendMessage();
             }
         };
+
+    useEffect(() => {
+        socket.on('new_message', () => refetch());
+    }, [socket]);
+
+    useEffect(() => {
+        if (scrollRef.current !== null) {
+            scrollRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth', inline: 'nearest' });
+        }
+    }, [messageList]);
 
     console.log('receiver', userMessages, user, receiver);
     return (
@@ -70,11 +100,26 @@ const ChatWindow = (props: ChatWindowProps) => {
                 {
                     isArrayValidAndNotEmpty(messageList) &&
                     messageList.map((message: Message) => (
-                        message.sender === user.userId ? (
-                            <ChatText key={message.message} user message={message.message} />
-                        ) : (
-                            <ChatText key={message.message} message={message.message} />
-                        )
+                        <div
+                            key={message.message}
+                            ref={scrollRef as LegacyRef<HTMLDivElement>}
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                            }}
+                        >
+                            {
+                                message.sender === user.userId ? (
+                                    <ChatText
+                                        key={message.message}
+                                        user
+                                        message={message.message}
+                                    />
+                                ) : (
+                                    <ChatText key={message.message} message={message.message} />
+                                )
+                            }
+                        </div>
                     ))
 
                 }

@@ -29,7 +29,7 @@ const LoginContainer = () => {
             password: values.password,
         });
         console.log('login response', response);
-        if (response.data) {
+        if (response.data.token) {
             localStorage.setItem('auth', response.data.token);
             const currentUser = {
                 _id: response.data.userId,

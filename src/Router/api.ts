@@ -1,11 +1,13 @@
+export const baseUrl = 'https://wa-backend.onrender.com';
+
 const API = {
-    LOGIN: '/api/login',
-    REGISTER: '/api/register',
+    LOGIN: `${baseUrl}/api/login`,
+    REGISTER: `${baseUrl}/api/register`,
     USERS: {
-        GET_ALL_USERS: '/api/users',
+        GET_ALL_USERS: `${baseUrl}/api/users`,
     },
-    MESSAGES: '/api/messages',
-    NEW_MESSAGE: '/api/messages/new',
+    MESSAGES: `${baseUrl}/api/messages`,
+    NEW_MESSAGE: `${baseUrl}/api/messages/new`,
 };
 
 export default API;

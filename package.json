@@ -48,6 +48,5 @@
         "eslint-plugin-react-hooks": "4.3.0",
         "typescript": "*",
         "vite": "^3.2.3"
-    },
-    "proxy": "http://localhost:8090/"
+    }
 }

@@ -12,6 +12,7 @@ const useStore = create<Store>((set) => ({
         name: '',
         phone: '',
         userId: '',
+        contacts: [],
     },
     setUser: (user: User) => set({ user }),
 }));

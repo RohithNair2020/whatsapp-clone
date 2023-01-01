@@ -2,7 +2,7 @@ import {
     useQuery,
 } from 'react-query';
 import axios from 'axios';
-import API from '../../Router/api';
+import API from '../../../Router/api';
 
 const useFetchUsers =
     () => (

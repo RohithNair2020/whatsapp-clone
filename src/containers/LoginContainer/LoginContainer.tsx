@@ -36,6 +36,7 @@ const LoginContainer = () => {
                 name: response.data.name,
                 userId: response.data?.userId,
                 phone: response.data?.phone,
+                contacts: response.data?.contacts,
             };
             setUser(currentUser);
             navigate('/dashboard');

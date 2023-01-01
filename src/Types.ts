@@ -3,7 +3,7 @@ export interface User {
     userId: string;
     name: string;
     phone: string;
-    // contacts: [Object];
+    contacts: string[];
 }
 
 export interface ErrorType {

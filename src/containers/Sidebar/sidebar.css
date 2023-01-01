@@ -19,6 +19,19 @@
     gap: 10px;
 }
 
+.results-bar {
+    color: var(--text-primary);
+    padding: 10px 40px;
+    background-color: var(--background-color);
+}
+
+.chat-tile-button {
+    width: 100%;
+    border-radius: 8px;
+    background-color: var(--background-color-secondary);
+    border: none;
+}
+
 .sidebar-icon {
     color: var(--text-secondary);
     margin-right: 30px;

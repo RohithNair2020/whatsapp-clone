@@ -16,6 +16,7 @@
     padding-left: 15px;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
 }
 
 .chat-tile-container:hover {
@@ -25,7 +26,7 @@
 .chat-tile-info {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
 }
 
 .chat-tile-info-last-message {

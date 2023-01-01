@@ -14,7 +14,7 @@ const ChatTile = (props: ChatTileProps) => {
                 <Avatar className="avatar" src="/propic1.jfif" />
             </div>
             <div className="chat-tile-info-container">
-                <div className="chat-tile-infor">
+                <div className="chat-tile-info">
                     <h2 className="chat-tile-info-name">{name}</h2>
                     <small className="chat-tile-info-last-message">
                         This message was deleted

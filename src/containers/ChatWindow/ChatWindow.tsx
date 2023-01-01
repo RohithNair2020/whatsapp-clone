@@ -17,8 +17,8 @@ import useFetchMessages from './useFetchMessages';
 import API from '../../Router/api';
 import { isArrayValidAndNotEmpty, isEnterKeyPressed } from '../../CommonUtil';
 
-const socket = io.connect('https://wa-backend.onrender.com', { transports: ['websocket', 'polling'] });
-// const socket = io.connect('http://localhost:8090');
+// const socket = io.connect('https://wa-backend.onrender.com', { transports: ['websocket', 'polling'] });
+const socket = io.connect('http://localhost:8090', { transports: ['websocket', 'polling'] });
 // const socket = io.connect('https://wa-backend.onrender.com');
 
 socket.on('connect_error', (err) => {

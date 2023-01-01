@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
-import Autocomplete, { AutocompleteRenderInputParams } from '@mui/material/Autocomplete';
+import axios from 'axios';
 import DonutLargeIcon from '@mui/icons-material/DonutLarge';
 import ChatIcon from '@mui/icons-material/Chat';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import Collapse from '@mui/material/Collapse';
 import { Avatar, IconButton } from '@mui/material';
 import './sidebar.css';
 import ChatTile from '../../components/ChatTile/ChatTile';
 import { User } from '../../Types';
-import useFetchUsers from './useFetchUsers';
-import { isArrayValidAndNotEmpty, isObjectValidAndNotEmpty, isValidFunction } from '../../CommonUtil';
+import {
+    isArrayValidAndNotEmpty, isEnterKeyPressed, isObjectValidAndNotEmpty, isValidFunction,
+} from '../../CommonUtil';
+import API from '../../Router/api';
+import useFetchContacts from './DataFetchHooks/useFetchContacts';
 
 interface SidebarProps {
     user: User;
@@ -19,27 +23,60 @@ interface SidebarProps {
 
 const Sidebar = (props: SidebarProps) => {
     const { user, onReceiverChange } = props;
-    const [userList, setUserList] = useState<User[]>([]);
+    console.log(onReceiverChange);
+    const [searchString, setSearchString] = useState<string>('');
+    const [resultUser, setResultUser] = useState<User | null>(null);
 
-    const { data, status, isLoading } = useFetchUsers();
-    console.log('useFetch', data, status);
+    console.log('user', user);
+    const { data: contactsData, isLoading: contactsLoading } = useFetchContacts(user.contacts);
+    const contactsList = contactsData?.data;
+    console.log('contact', contactsList, contactsLoading);
 
-    const handleChange = (event: React.SyntheticEvent<Element, Event>, value: User | null) => {
-        console.log('chng', value);
+    const handleSelect = (event: React.MouseEvent) => {
+        console.log('chng', event);
         if (isValidFunction(onReceiverChange)) {
-            if (isObjectValidAndNotEmpty(value)) {
-                onReceiverChange(value!);
+            if (isObjectValidAndNotEmpty(resultUser)) {
+                onReceiverChange(resultUser!);
             }
         }
     };
 
-    useEffect(() => {
-        if (isObjectValidAndNotEmpty(data)) {
-            if (isArrayValidAndNotEmpty(data!.data)) {
-                setUserList(data!.data);
+    const handleContactSelect = (contact: User) => {
+        if (isValidFunction(onReceiverChange)) {
+            if (isObjectValidAndNotEmpty(contact)) {
+                onReceiverChange(contact!);
             }
         }
-    }, [data]);
+    };
+
+    const handleSearchStringChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchString(e.target.value);
+    };
+
+    const handleSearch =
+        async (e: React.KeyboardEvent) => {
+            console.log('enter pressed');
+            if (isEnterKeyPressed(e)) {
+                const response = await axios.post(API.USERS.GET_USER, { phone: searchString }, { headers: { 'x-access-token': localStorage.getItem('auth') } });
+                console.log('response data', response);
+                const userFromResponse = response.data;
+                if (isObjectValidAndNotEmpty(user)) {
+                    if (user.phone) {
+                        setResultUser(userFromResponse);
+                    } else {
+                        setResultUser(null);
+                    }
+                }
+            }
+        };
+
+    // useEffect(() => {
+    //     if (isObjectValidAndNotEmpty(data)) {
+    //         if (isArrayValidAndNotEmpty(data!.data)) {
+    //             // setUserList(data!.data);
+    //         }
+    //     }
+    // }, [data]);
 
     return (
         <div className="sidebar-container">
@@ -66,50 +103,34 @@ const Sidebar = (props: SidebarProps) => {
                         className="search-input-icon"
                         fontSize="small"
                     />
-                    <Autocomplete
-                        sx={{
-                            width: '100%',
-                        }}
-                        loading={isLoading}
-                        onChange={handleChange}
-                        options={userList}
-                        getOptionLabel={(option: User) => option.name}
-                        // eslint-disable-next-line react/no-unstable-nested-components
-                        PaperComponent={({ children }) => <div className="dropdown-container">{children}</div>}
-                        renderOption={
-                            (optionProps, option) => (
-                                <li {...optionProps} className="list-item">
-                                    <ChatTile key={option.name} {...optionProps} name={option.name || option.phone || ''} />
-                                </li>
-                            )
-                        }
-                        // eslint-disable-next-line max-len
-                        filterOptions={(options: User[]) => options.filter((option) => option.phone !== user?.phone)}
-                        renderInput={(params: AutocompleteRenderInputParams) => (
-                            <div ref={params.InputProps.ref}>
-                                <input
-                                    type="text"
-                                    style={{
-                                        outline: 'none',
-                                        border: 'none',
-                                        width: '100%',
-                                        height: '25px',
-                                        color: '#ddd',
-                                        backgroundColor: '#202c33',
-                                    }}
-                                    className="search-input"
-                                    {...params.inputProps}
-                                />
-                            </div>
-                        )}
+                    <input
+                        type="text"
+                        className="search-input"
+                        onKeyDown={handleSearch}
+                        value={searchString}
+                        onChange={handleSearchStringChange}
                     />
                 </div>
                 <IconButton>
                     <FilterListIcon className="filter-list-icon" fontSize="small" />
                 </IconButton>
             </div>
+            <Collapse in={isObjectValidAndNotEmpty(resultUser)}>
+                <div className="results-bar">
+                    <button type="submit" className="chat-tile-button" onClick={handleSelect}>
+                        <ChatTile name={resultUser?.name || resultUser?.phone || ''} />
+                    </button>
+                </div>
+            </Collapse>
             <div className="chat-list-container">
-                <ChatTile name={user?.name || user?.phone || ''} />
+                {
+                    isArrayValidAndNotEmpty(contactsList) &&
+                    contactsList.map((contact: User) => (
+                        <button key={contact.userId} type="submit" className="chat-tile-button" onClick={() => handleContactSelect(contact)}>
+                            <ChatTile key={contact?.userId} name={contact?.name || contact?.phone || ''} />
+                        </button>
+                    ))
+                }
             </div>
         </div>
     );

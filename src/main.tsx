@@ -9,6 +9,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <BrowserRouter>
             <App />
         </BrowserRouter>
-        {/* eslint-disable-next-line @typescript-eslint/comma-dangle */}
-    </React.StrictMode>
+    </React.StrictMode>,
 );

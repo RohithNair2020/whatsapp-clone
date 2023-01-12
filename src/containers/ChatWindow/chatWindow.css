@@ -1,6 +1,7 @@
 .chat-window-container {
     display: flex;
     flex-direction: column;
+    background: url('/chatBackground.png') center center fixed;
     flex: 0.65;
 }
 

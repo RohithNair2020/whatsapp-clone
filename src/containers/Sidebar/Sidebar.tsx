@@ -28,7 +28,8 @@ const Sidebar = (props: SidebarProps) => {
     const [resultUser, setResultUser] = useState<User | null>(null);
 
     console.log('user', user);
-    const { data: contactsData, isLoading: contactsLoading } = useFetchContacts(user.contacts);
+    const { data: contactsData, isLoading: contactsLoading } =
+        useFetchContacts(user.contacts);
     const contactsList = contactsData?.data;
     console.log('contact', contactsList, contactsLoading);
 
@@ -37,6 +38,8 @@ const Sidebar = (props: SidebarProps) => {
         if (isValidFunction(onReceiverChange)) {
             if (isObjectValidAndNotEmpty(resultUser)) {
                 onReceiverChange(resultUser!);
+                setResultUser(null);
+                setSearchString('');
             }
         }
     };
@@ -69,14 +72,6 @@ const Sidebar = (props: SidebarProps) => {
                 }
             }
         };
-
-    // useEffect(() => {
-    //     if (isObjectValidAndNotEmpty(data)) {
-    //         if (isArrayValidAndNotEmpty(data!.data)) {
-    //             // setUserList(data!.data);
-    //         }
-    //     }
-    // }, [data]);
 
     return (
         <div className="sidebar-container">

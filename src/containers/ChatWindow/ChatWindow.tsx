@@ -19,7 +19,6 @@ import { isArrayValidAndNotEmpty, isEnterKeyPressed } from '../../CommonUtil';
 
 // const socket = io.connect('https://wa-backend.onrender.com', { transports: ['websocket', 'polling'] });
 const socket = io.connect('http://localhost:8090', { transports: ['websocket', 'polling'] });
-// const socket = io.connect('https://wa-backend.onrender.com');
 
 socket.on('connect_error', (err) => {
     console.log('socket state', err);
@@ -49,7 +48,7 @@ const ChatWindow = (props: ChatWindowProps) => {
 
     // const chatWindow = document.getElementById('chatWindow');
     // eslint-disable-next-line no-underscore-dangle
-    const { data, isLoading, refetch } = useFetchMessages(user.userId, receiver?._id);
+    const { data, isLoading, refetch } = useFetchMessages(user._id, receiver?._id);
     const messageList = data?.data;
     console.log('chat data', messageList, isLoading);
 

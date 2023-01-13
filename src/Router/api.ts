@@ -1,5 +1,5 @@
-export const baseUrl = 'http://localhost:8090';
-// export const baseUrl = 'https://wa-backend.onrender.com';
+// export const baseUrl = 'http://localhost:8090';
+export const baseUrl = 'https://wa-backend.onrender.com';
 
 const API = {
     LOGIN: `${baseUrl}/api/login`,

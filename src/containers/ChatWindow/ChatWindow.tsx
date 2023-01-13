@@ -60,11 +60,10 @@ const ChatWindow = (props: ChatWindowProps) => {
                 // eslint-disable-next-line no-underscore-dangle
                 receiver: receiver!._id,
             };
-            const response = await axios.post(API.NEW_MESSAGE, messagePayload);
+            const response = await axios.post(API.NEW_MESSAGE, messagePayload, { headers: { 'x-access-token': localStorage.getItem('auth') } });
             socket.emit('message_sent');
             setTextInputValue('');
             console.log('message send response', response);
-            // refetch();
         }
     };
 
